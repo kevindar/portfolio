@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kevin-portfolio",
+  "main": "src/index.js",
+  "compatibility_date": "2025-01-01",
+
+  // Static assets served from ./public via the ASSETS binding.
+  // The Worker (src/index.js) intercepts /api/github; everything else
+  // is served directly from the assets store.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  // Keep the free workers.dev URL live as a fallback.
+  "workers_dev": true,
+
+  // ── Custom domain ────────────────────────────────────────────────
+  // Cloudflare auto-creates the DNS record + SSL cert for this.
+  "routes": [
+    { "pattern": "kevindar.my.id", "custom_domain": true }
+  ]
+}
